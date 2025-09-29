@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36414.22 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UdemyRabbitMQWeb.ExcelCreate", "UdemyRabbitMQWeb.ExcelCreate\UdemyRabbitMQWeb.ExcelCreate.csproj", "{5316E349-D3B5-49B4-9FA4-5CEF75457DA1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5316E349-D3B5-49B4-9FA4-5CEF75457DA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5316E349-D3B5-49B4-9FA4-5CEF75457DA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5316E349-D3B5-49B4-9FA4-5CEF75457DA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5316E349-D3B5-49B4-9FA4-5CEF75457DA1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F9308442-9340-41B9-A5FA-4772BC05DF2D}
+	EndGlobalSection
+EndGlobal
