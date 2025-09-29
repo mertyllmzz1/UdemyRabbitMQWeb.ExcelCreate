@@ -18,11 +18,12 @@ namespace UdemyRabbitMQWeb.ExcelCreate
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-
+            
             using(var scope=host.Services.CreateScope())
             {
                 var appDbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
                 var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+                var signInManager = scope.ServiceProvider.GetRequiredService<SignInManager<IdentityUser>>();
 
                 appDbContext.Database.Migrate();
                 if (!appDbContext.Users.Any())
