@@ -40,7 +40,7 @@ namespace UdemyRabbitMQWeb.ExcelCreate.Controllers
             };
             await _context.UserFiles.AddAsync(userFile);
             await _context.SaveChangesAsync();
-            _rabbitMQPublisher.Publish(new Shared.CreateExcelMessage() { FileId = userFile.Id, UserId = userFile.UserId });
+            _rabbitMQPublisher.Publish(new Shared.CreateExcelMessage() { FileId = userFile.Id});
             TempData["StartCreatingExcel"]=true;
             return RedirectToAction(nameof(Files));
         }
@@ -48,7 +48,7 @@ namespace UdemyRabbitMQWeb.ExcelCreate.Controllers
         {
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
 
-            return View(await _context.UserFiles.Where(p=>p.UserId == user.Id).ToListAsync());
+            return View(await _context.UserFiles.Where(p=>p.UserId == user.Id).OrderByDescending(p=>p.Id).ToListAsync());
         }
     }
 }
