@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using UdemyRabbitMQWeb.ExcelCreate.Hubs;
 using UdemyRabbitMQWeb.ExcelCreate.Models;
 
 namespace UdemyRabbitMQWeb.ExcelCreate.Controllers
@@ -14,9 +16,11 @@ namespace UdemyRabbitMQWeb.ExcelCreate.Controllers
     public class FilesController : ControllerBase
     {
         private readonly AppDbContext _context;
-        public FilesController(AppDbContext appDbContext)
+        private readonly IHubContext<MyHub> _hubContext;
+        public FilesController(AppDbContext appDbContext, IHubContext<MyHub> hubContext)
         {
             _context = appDbContext;
+            _hubContext = hubContext;
         }
         public async Task<IActionResult> Upload(IFormFile file,int fileId)
         {
@@ -37,6 +41,8 @@ namespace UdemyRabbitMQWeb.ExcelCreate.Controllers
             userFile.FileStatus = FileStatus.Completed;
             
             await _context.SaveChangesAsync();
+            //signalr ile olustugunda kullaniciya mesaj gonderiyoruz. authnetication oldugu icin userId ile gonderebiliyoruz.
+            await _hubContext.Clients.User(userFile.UserId).SendAsync("ReceiveMessage");
             return Ok();
 
         }
